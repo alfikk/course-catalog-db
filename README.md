@@ -152,3 +152,12 @@ Scenario: enroll a new student in a course — two inserts in one transaction.
 | Deletion | ✅ `RESTRICT` on `course_id` (block deleting a course that has enrollments), `CASCADE` on `student_id` (auto-delete enrollments when a student is removed). Both chosen deliberately. |
 | Normalization | ✅ Each fact is stored in one place: course data in `courses`, student data in `students`, the enrollment relationship in `enrollments`. No repeated groups or lists in a single cell. |
 | Indexes and names | ✅ Indexes on `PRIMARY KEY` and `UNIQUE` are automatic; `enrollments_student_id_idx` added manually for the foreign key. No unnecessary indexes. Names follow `snake_case`, tables are plural nouns, foreign keys follow the `table_column` convention. |
+
+---
+
+## Bonus experiments
+
+The `experiments/` folder contains two additional SQL files:
+
+- `idx_data.sql` — loads 500 courses, 20,000 students, and 50,000 enrollments into the `idx_demo` database for the index experiment (Step 6).
+- `norm_demo.sql` — creates a flat `registrations` table in `norm_demo` to demonstrate the three normalization anomalies (update, delete, insert) described in Bonus Task 1.
